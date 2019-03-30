@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class TodoServiceImpl implements TodoService {
     private static List<Todo> todos = new ArrayList<>();
-    private static long idCounter = 0;
+    private static Long idCounter = 0L;
 
     static {
         todos.add(new Todo(++idCounter, "prashant", "Learn Android", new Date(), true));

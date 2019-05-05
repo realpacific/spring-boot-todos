@@ -12,7 +12,7 @@ public class HelloWorldController {
 
     @GetMapping(path = "/{value}")
     Response getResponse(@PathVariable("value") String value) throws Exception {
-        return new Response("Hello, " + value);
+        return new Response("Hello world! I am  " + value);
 //        throw new Exception("Some error occurred");
     }
 }

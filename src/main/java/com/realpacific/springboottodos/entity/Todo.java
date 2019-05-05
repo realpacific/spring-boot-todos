@@ -1,5 +1,7 @@
 package com.realpacific.springboottodos.entity;
 
+import com.realpacific.springboottodos.validators.IsValidUsername;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +13,7 @@ public class Todo {
     @Id
     @GeneratedValue
     private Long id;
+    @IsValidUsername
     private String username;
     private String description;
     private Date targetDate;

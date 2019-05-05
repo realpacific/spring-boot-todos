@@ -62,7 +62,12 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(jwtUnAuthorizedResponseAuthenticationEntryPoint).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
-                .anyRequest().authenticated();
+                .antMatchers("/*.ico", "/*.js", "/*.html")
+                .permitAll()
+                .anyRequest().permitAll()
+
+                .anyRequest().authenticated()
+        ;
 
         // Configure filter
         httpSecurity
@@ -78,6 +83,7 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity webSecurity) throws Exception {
         webSecurity
                 .ignoring()
+                .antMatchers("/favicon.ico", "*.js", "*.html")
                 .antMatchers(
                         HttpMethod.POST,
                         authenticationPath
@@ -86,7 +92,8 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .ignoring()
                 .antMatchers(HttpMethod.GET,
-                        "/" //Other Stuff You want to Ignore
+                        "/", "/actuator/**", "/actuator", "/browser/*",
+                        "/browser/**"//Other Stuff You want to Ignore
                 )
                 .and()
                 .ignoring()
